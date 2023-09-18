@@ -18,7 +18,9 @@ export default function NavBar() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} href="/" active={pathname==='/'}>Home</Nav.Link>
+            <Nav.Link as={Link} href="/static" active={pathname==='/static'}>Static</Nav.Link>
+            <Nav.Link as={Link} href="/dynamic" active={pathname==='/dynamic'}>Dynamic</Nav.Link>
+            <Nav.Link as={Link} href="/isr" active={pathname==='/isr'}>ISR</Nav.Link>
             <Nav.Link as={Link} href="/about" active={pathname==='/about'}>About</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
