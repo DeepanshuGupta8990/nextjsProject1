@@ -1,6 +1,8 @@
 import { UnsplashImage } from "@/modals/unsplash-image";
 import Image from "next/image";
 import styles from './TopicPage.module.css'
+import {Alert} from '@/components/bootstrap';
+import { Metadata } from "next";
 
 interface PageProps {
   params: { topic: string };
@@ -8,6 +10,17 @@ interface PageProps {
 }
 
 // export const revalidate = 0
+export function generateMetadata({params:{topic}}:PageProps):Metadata{
+   return {
+    title: topic + " - Nextjs 13.4 image gallery"
+   }
+}
+
+export const dynamicParams = false;
+
+export function generateStaticParams(){
+  return ["health","fitness","coding"].map((topic)=>({topic}))
+}
 
 export default async function Page({ params: { topic } }: PageProps) {
   const response = await fetch(
@@ -17,11 +30,14 @@ export default async function Page({ params: { topic } }: PageProps) {
 
   return (
     <div>
+     <Alert>
+        This page uses <strong>generateStaticProps</strong> to render and cache pages at build time, even though the url has a dynamic parameter. Pages that are not included in generateStaticParams will be fetched & rendered on first access and then <strong>cached subsequent requests</strong>(this can be disabled)
+      </Alert>
       <h1>{topic}</h1>
       <div className={styles.container}>
       {images.map((image) => {
         return (
-       <div style={{overflow:'hidden',width:'250px',height:'250px',margin:'0.25rem'}}> 
+       <div   key={image.urls.raw}  style={{overflow:'hidden',width:'250px',height:'250px',margin:'0.25rem'}}> 
              <Image
               src={image.urls.raw}
               width={250}
@@ -29,7 +45,6 @@ export default async function Page({ params: { topic } }: PageProps) {
               alt={image.description}
               //   className="rounded shadow mw-100 h-100"
               className={styles.image}
-              key={image.urls.raw} 
               />
        </div>
         );

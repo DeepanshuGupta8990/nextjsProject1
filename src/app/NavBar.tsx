@@ -22,16 +22,10 @@ export default function NavBar() {
             <Nav.Link as={Link} href="/dynamic" active={pathname==='/dynamic'}>Dynamic</Nav.Link>
             <Nav.Link as={Link} href="/isr" active={pathname==='/isr'}>ISR</Nav.Link>
             <Nav.Link as={Link} href="/about" active={pathname==='/about'}>About</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
+            <NavDropdown title="topics" id="topics-dropdown">
+              <NavDropdown.Item  as={Link} href="/topics/coding">Coding</NavDropdown.Item>
+              <NavDropdown.Item  as={Link} href="/topics/fitness">Fitness</NavDropdown.Item>
+              <NavDropdown.Item  as={Link} href="/topics/health">Health</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
